@@ -48,7 +48,7 @@ Write a function qSort that sorts a dataset using the quicksort algorithm. The d
 // }
 
 
-const sortArr = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
+const arr = [89, 30, 25, 32, 72, 70, 51, 42, 25, 24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14, 33, 45, 72, 56, 44, 21, 88, 27, 68, 15, 62, 93, 98, 73, 28, 16, 46, 87, 28, 65, 38, 67, 16, 85, 63, 23, 69, 64, 91, 9, 70, 81, 27, 97, 82, 6, 88, 3, 7, 46, 13, 11, 64, 76, 31, 26, 38, 28, 13, 17, 69, 90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87, 49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
 
 
@@ -177,8 +177,75 @@ const sortArr = (arr, min, max) => {
 };
 
 
-console.log(sortArr([26,32,10,5,1,0], 0, 32));
+// console.log(sortArr([26,32,10,5,1,0], 0, 32));
 
+
+//============================================ Sort in Place ======================================>
+
+/*
+Write an algorithm to shuffle an array into a random order in-place (i.e. without creating a new array).
+*/
+
+const swapNum = (arr, first ,second) => {
+  let temp = arr[first];
+  arr[first] = arr[second];
+  arr[second]= temp;
+};
+
+let myArr = [1,2,3,4,5,6,7,8,9,10];
+
+const randomSort = arr => {
+  for(let i=0;i<arr.length;i++) {
+    let randomIndex = Math.floor(Math.random() * (arr.length-1));
+    swap(arr, i, randomIndex);
+  }
+  return arr;
+};
+
+//================================== Book Sort ============================>
+
+/*
+Imagine that I gave you twenty books to sort in alphabetical order. How would you go about it? Can you express this as an algorithm?
+*/
+
+let books = [
+  {
+    title:'Great Divorce, The',
+  },
+  {
+    title:'Everlasting Man, The',
+  },
+  {
+    title:'Great Gatsby, The',
+  },
+  {
+    title:'Low Level Hell',
+  },
+  {
+    title:'Mere Christianity',
+  },
+  {
+    title:'Miracle of Theism, The',
+  },
+  {
+    title:'Out of the Silent Planet',
+  }
+];
+
+const bookSort = books => {
+  for(let i=0;i<books.length;i++) {
+    for (let j=1;j<books.length;j++) {
+      console.log('i: ', books[i].title[0].charCodeAt(), 'j: ',books[j].title[0].charCodeAt());
+      if (books[i].title[0].charCodeAt() > books[j].title[0].charCodeAt()) {
+        console.log('ran');
+        let temp = books[j];
+        books[j]= books[i];
+        books[i] = temp;
+      }
+    }
+  }
+  return books;
+};
 
 
 
@@ -190,7 +257,8 @@ function main() {
   // counter = 0;
   // qsort(sortArr);
   // console.log('Iterations for qsort', counter);
+  // console.log(randomSort(arr));
+  console.log(bookSort(books));
 }
-
 
 main();
